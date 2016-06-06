@@ -116,10 +116,10 @@
             <artifactId>nxparser</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.aliasi</groupId>
-            <artifactId>lingpipe</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.aliasi</groupId>-->
+            <!--<artifactId>lingpipe</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>edu.umd</groupId>

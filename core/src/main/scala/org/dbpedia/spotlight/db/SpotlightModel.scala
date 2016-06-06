@@ -1,25 +1,28 @@
 package org.dbpedia.spotlight.db
 
-import concurrent.{TokenizerWrapper, SpotterWrapper}
+import concurrent.{SpotterWrapper, TokenizerWrapper}
 import org.dbpedia.spotlight.db.memory.{MemoryContextStore, MemoryStore}
 import model._
-import opennlp.tools.tokenize.{TokenizerModel, TokenizerME}
-import opennlp.tools.sentdetect.{SentenceModel, SentenceDetectorME}
+import opennlp.tools.tokenize.{TokenizerME, TokenizerModel}
+import opennlp.tools.sentdetect.{SentenceDetectorME, SentenceModel}
 import opennlp.tools.postag.{POSModel, POSTaggerME}
 import org.dbpedia.spotlight.disambiguate.mixtures.UnweightedMixture
-import org.dbpedia.spotlight.db.similarity.{NoContextSimilarity, GenerativeContextSimilarity, ContextSimilarity}
+import org.dbpedia.spotlight.db.similarity.{ContextSimilarity, GenerativeContextSimilarity, NoContextSimilarity}
+
 import scala.collection.JavaConverters._
 import org.dbpedia.spotlight.model.SpotterConfiguration.SpotterPolicy
 import org.dbpedia.spotlight.model.SpotlightConfiguration.DisambiguationPolicy
 import org.dbpedia.spotlight.disambiguate.ParagraphDisambiguatorJ
 import org.dbpedia.spotlight.spot.{SpotXmlParser, Spotter}
-import java.io.{IOException, File, FileInputStream}
+import java.io.{File, FileInputStream, IOException}
 import java.util.{Locale, Properties}
+
 import opennlp.tools.chunker.ChunkerModel
 import opennlp.tools.namefind.TokenNameFinderModel
 import stem.SnowballStemmer
-import tokenize.{OpenNLPTokenizer, LanguageIndependentTokenizer}
+import tokenize.{LanguageIndependentTokenizer, OpenNLPTokenizer}
 import org.dbpedia.spotlight.exceptions.ConfigurationException
+import org.dbpedia.spotlight.log.SpotlightLog
 import org.dbpedia.spotlight.util.MathUtil
 
 
@@ -128,16 +131,16 @@ object SpotlightModel {
     ))
 
     //If there is at least one NE model or a chunker, use the OpenNLP spotter:
-    val spotter = if( new File(modelFolder, "opennlp").exists() && new File(modelFolder, "opennlp").list().exists(f => f.startsWith("ner-") || f.startsWith("chunker")) ) {
-      val nerModels = new File(modelFolder, "opennlp").list().filter(_.startsWith("ner-")).map { f: String =>
-        new TokenNameFinderModel(new FileInputStream(new File(new File(modelFolder, "opennlp"), f)))
+    val openNlPFolder = new File(modelFolder, "opennlp")
+    val spotter = if( openNlPFolder.exists() &&
+      openNlPFolder.list().exists(f => f.startsWith("ner-") || f.startsWith("chunker"))) {
+
+      val nerModels = openNlPFolder.list().collect {
+        case f if f.startsWith("ner-") => new TokenNameFinderModel(new FileInputStream(new File(openNlPFolder, f)))
       }.toList
 
       val chunkerFile = new File(modelFolder, "opennlp/chunker.bin")
-      val chunkerModel = if (chunkerFile.exists())
-        Some(new ChunkerModel(new FileInputStream(chunkerFile)))
-      else
-        None
+      val chunkerModel = if (chunkerFile.exists()) Some(new ChunkerModel(new FileInputStream(chunkerFile))) else None
 
       def createSpotter() = new OpenNLPSpotter(
         chunkerModel,
@@ -147,6 +150,7 @@ object SpotlightModel {
         Some(loadSpotterThresholds(new File(modelFolder, "spotter_thresholds.txt")))
       ).asInstanceOf[Spotter]
 
+      SpotlightLog.info(this.getClass, "Selecting OpenNLP spotter")
       if(cores.size == 1)
         createSpotter()
       else
@@ -156,6 +160,7 @@ object SpotlightModel {
 
     } else {
       val dict = MemoryStore.loadFSADictionary(new FileInputStream(new File(modelFolder, "fsa_dict.mem")))
+      SpotlightLog.info(this.getClass, "Using some FSADictionary for FSASpotter")
 
       new FSASpotter(
         dict,

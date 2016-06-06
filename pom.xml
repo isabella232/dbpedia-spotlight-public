@@ -47,10 +47,10 @@
         <module>core</module>
         <module>rest</module>
         <module>index</module>
-        <module>eval</module>
-        <module>uima</module>
-        <module>dist</module>
-        <module>rest-tomcat</module>
+        <!--<module>eval</module>-->
+        <!--<module>uima</module>-->
+        <!--<module>dist</module>-->
+        <!--<module>rest-tomcat</module>-->
     </modules>
 
     <build>
@@ -752,15 +752,15 @@
                 -->
             </dependency>
 
-            <dependency>
-                <groupId>com.aliasi</groupId>
-                <artifactId>lingpipe</artifactId>
-                <version>4.1.0</version>
-                <!--
-                   License: Alias-i Royalty Free License Version 1
-                   url: http://alias-i.com/lingpipe/licenses/lingpipe-license-1.txt
-                -->
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.aliasi</groupId>-->
+                <!--<artifactId>lingpipe</artifactId>-->
+                <!--<version>4.1.0</version>-->
+                <!--&lt;!&ndash;-->
+                   <!--License: Alias-i Royalty Free License Version 1-->
+                   <!--url: http://alias-i.com/lingpipe/licenses/lingpipe-license-1.txt-->
+                <!--&ndash;&gt;-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.semanticweb.yars</groupId>
@@ -816,12 +816,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.wiki.harvester.dependency</groupId>
-                <artifactId>pedia.uima.harvester</artifactId>
-                <version>1.0</version>
-            </dependency>
-
-            <dependency>
                 <groupId>pircbot</groupId>
                 <artifactId>pircbot</artifactId>
                 <version>1.5.0</version>
@@ -843,36 +837,6 @@
                 <groupId>org.knallgrau.utils</groupId>
                 <artifactId>textcat</artifactId>
                 <version>1.0.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-core</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-cpe</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-tools</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-document-annotation</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-bootstrap</artifactId>
-                <version>2.4.0</version>
             </dependency>
 
             <dependency>

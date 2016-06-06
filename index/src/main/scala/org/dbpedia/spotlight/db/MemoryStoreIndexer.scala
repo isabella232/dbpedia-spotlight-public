@@ -266,8 +266,8 @@ class MemoryStoreIndexer(val baseDir: File, val quantizedCountStore: MemoryQuant
       }
     }
 
-    tokenTypeStore.tokenForId = tokens.array
-    tokenTypeStore.counts = counts.array
+    tokenTypeStore.tokenForId = tokens
+    tokenTypeStore.counts = counts
 
     MemoryStore.dump(tokenTypeStore, new File(baseDir, "tokens.mem"))
   }

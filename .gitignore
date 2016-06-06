@@ -5,5 +5,4 @@
 .settings/
 target
 *.log
-*~
 index/output
