@@ -1,7 +1,7 @@
 # DBpedia Spotlight
 #### Shedding Light on the Web of Documents
 
-DBpedia Spotlight looks for ~3.5M things of unknown or ~320 known types in text and tries to link them to their global unique identifiers in [DBpedia](http://dbpedia.org). 
+DBpedia Spotlight looks for ~3.5M things of unknown or ~320 known types in text and tries to link them to their global unique identifiers in [DBpedia](http://dbpedia.org).
 
 #### Demonstration
 
@@ -34,6 +34,14 @@ If you need service reliability and lower response times, you can run DBpedia Sp
     wget http://spotlight.sztaki.hu/downloads/latest_models/en.tar.gz
     tar xzf en.tar.gz
     java -jar dbpedia-spotlight-latest.jar en http://localhost:2222/rest
+
+
+##### Building and running. 
+
+```
+$ mvn clean package
+$ java -cp "rest/target/rest-0.7.jar" org.dbpedia.spotlight.web.rest.Server en http://localhost:2222/rest
+```
 
 #### Models and data
 
