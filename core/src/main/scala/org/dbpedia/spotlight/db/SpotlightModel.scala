@@ -83,7 +83,9 @@ object SpotlightModel {
     //Load the stemmer from the model file:
     def stemmer(): Stemmer = properties.getProperty("stemmer") match {
       case s: String if s equals "None" => null
-      case s: String => new SnowballStemmer(s)
+      case s: String =>
+        SpotlightLog.info(this.getClass, "Using SnowballStemmer for stemming")
+        new SnowballStemmer(s)
     }
 
     def contextSimilarity(): ContextSimilarity = contextStore match {
@@ -110,6 +112,7 @@ object SpotlightModel {
         tokenTypeStore
       ).asInstanceOf[TextTokenizer]
 
+      SpotlightLog.info(this.getClass, "Using org.dbpedia.spotlight.db.tokenize.OpenNLPTokenizer")
       if(cores.size == 1)
         createTokenizer()
       else
@@ -117,6 +120,7 @@ object SpotlightModel {
 
     } else {
       val locale = properties.getProperty("locale").split("_")
+      SpotlightLog.info(this.getClass, "Using org.dbpedia.spotlight.db.tokenize.LanguageIndependentTokenizer for locale " + locale)
       new LanguageIndependentTokenizer(stopwords, stemmer(), new Locale(locale(0), locale(1)), tokenTypeStore)
     }
 
@@ -150,7 +154,7 @@ object SpotlightModel {
         Some(loadSpotterThresholds(new File(modelFolder, "spotter_thresholds.txt")))
       ).asInstanceOf[Spotter]
 
-      SpotlightLog.info(this.getClass, "Selecting OpenNLP spotter")
+      SpotlightLog.info(this.getClass, "Selecting OpenNLP spotter refer org.dbpedia.spotlight.db.OpenNLPSpotter")
       if(cores.size == 1)
         createSpotter()
       else
@@ -160,7 +164,7 @@ object SpotlightModel {
 
     } else {
       val dict = MemoryStore.loadFSADictionary(new FileInputStream(new File(modelFolder, "fsa_dict.mem")))
-      SpotlightLog.info(this.getClass, "Using some FSADictionary for FSASpotter")
+      SpotlightLog.info(this.getClass, "Using the FSASpotter refer org.dbpedia.spotlight.db.FSASpotter")
 
       new FSASpotter(
         dict,
