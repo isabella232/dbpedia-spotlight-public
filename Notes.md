@@ -38,6 +38,7 @@ This requires the input models folder which is responsible for loading the
 Input model folder must contain an `opennlp` folder, with files listed below
 - files `{pos-maxent,sent,token}.bin` to load the `org.dbpedia.spotlight.db.tokenize.OpenNLPTokenizer`
 - files `[ner-{location,person,organization}.bin , chunker.bin]` to load the `org.dbpedia.spotlight.db.OpenNLPSpotter`
+- These can be obtained from [here](http://opennlp.sourceforge.net/models-1.5/)
 
 **Defaults**
 The default values used are
