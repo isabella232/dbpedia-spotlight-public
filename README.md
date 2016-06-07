@@ -36,13 +36,6 @@ If you need service reliability and lower response times, you can run DBpedia Sp
     java -jar dbpedia-spotlight-latest.jar en http://localhost:2222/rest
 
 
-##### Building and running. 
-
-```
-$ mvn clean package
-$ java -cp "rest/target/rest-0.7.jar" org.dbpedia.spotlight.web.rest.Server en http://localhost:2222/rest
-```
-
 #### Models and data
 
 Models and raw data for most languages are available [here](http://spotlight.sztaki.hu/downloads/).
