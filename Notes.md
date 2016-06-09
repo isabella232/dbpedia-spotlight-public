@@ -2,9 +2,10 @@
 
 ##### Building and running.
 
+To build a shaded jar
 ```
 $ mvn clean package -Pshade
-$ java -cp "rest/target/rest-0.7.jar" org.dbpedia.spotlight.web.rest.Server en http://localhost:2222/rest
+$ java -cp "rest/target/rest-0.8-SNAPSHOT.jar" org.dbpedia.spotlight.web.rest.Server en http://localhost:2222/rest
 ```
 
 #### Models and data
