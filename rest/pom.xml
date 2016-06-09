@@ -69,6 +69,7 @@
                 <configuration>
                     <name>${project.artifactId}</name>
                     <group>Applications/Engineering</group>
+                    <copyright>2016, ${project.organization.name}</copyright>
                     <packager>${user.name}</packager>
                     <changelogFile>CHANGES</changelogFile>
                     <defineStatements>
@@ -76,7 +77,7 @@
                     </defineStatements>
                     <mappings>
                         <mapping>
-                            <directory>/usr/lib/${project.shortName}</directory>
+                            <directory>/usr/share/${project.shortName}/lib/</directory>
                             <filemode>755</filemode>
                             <artifact />
                             <sources>

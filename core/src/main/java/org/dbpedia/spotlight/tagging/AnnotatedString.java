@@ -1,4 +1,4 @@
-package org.dbpedia.spotlight.tagging.lingpipe;
+package org.dbpedia.spotlight.tagging;
 
 /**
  * String with a single annotated substring, e.g. a paragraph containing an
