@@ -23,7 +23,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <dbpedia.spotlight.version>0.7</dbpedia.spotlight.version>
+        <dbpedia.spotlight.version>0.8-SNAPSHOT</dbpedia.spotlight.version>
 
         <java.compiler.version>1.6</java.compiler.version>
         <scala.compiler.version>2.9.2</scala.compiler.version>
@@ -39,7 +39,7 @@
 
     <groupId>org.dbpedia.spotlight</groupId>
     <artifactId>spotlight</artifactId>
-    <version>0.7</version>
+    <version>0.8-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>DBpedia Spotlight annotation framework (parent POM)</name>
 
@@ -52,6 +52,25 @@
         <!--<module>dist</module>-->
         <!--<module>rest-tomcat</module>-->
     </modules>
+
+    <scm>
+        <connection>scm:git:https://github.com/datasift/dbpedia-spotlight</connection>
+        <developerConnection>scm:git:git@github.com:datasift/dbpedia-spotlight</developerConnection>
+        <url>https://github.com/datasift/dbpedia-spotlight</url>
+    </scm>
+
+
+    <distributionManagement>
+        <repository>
+            <id>com.datasift.maven.release</id>
+            <url>sftp://repo.sysms.net:55522/var/www/repo.sysms.net/ds-build-maven/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>com.datasift.maven.snapshot</id>
+            <url>sftp://repo.sysms.net:55522/var/www/repo.sysms.net/ds-build-maven/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 
     <build>
          <pluginManagement>
