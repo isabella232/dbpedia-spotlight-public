@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+MAIN=org.dbpedia.spotlight.web.rest.Server
+
+CLASSPATH="${CLASSPATH:-/usr/share/$(basename $0)}/lib/*"
+
+usage() {
+  [[ -n "$@" ]] && echo "$@"
+  echo "usage: $(basename $0) <model-folder> <url>"
+  exit 1
+}
+
+case "$1" in
+  '' | '-h' | '--help') usage
+esac
+
+ARGS=("$@")
+
+[[ -n "$JAVA_HOME" ]] && JAVA="$JAVA_HOME/bin/java" || { JAVA="`which java`"  || usage java not found; }
+
+JAVA_OPTS="${JAVA_OPTS:--Xmx16g}"
+
+"$JAVA" "$JAVA_OPTS" -cp "$CLASSPATH" "$MAIN" "${ARGS[@]}"

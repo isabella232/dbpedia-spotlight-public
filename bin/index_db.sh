@@ -9,7 +9,7 @@
 # $3 Stopwords file
 # $4 Analyzer+Stemmer language prefix e.g. Dutch
 # $5 Model target folder
-
+# Usage : ./index_db.sh -o en wdir1 en_US en/stopwords.list English models/en | tee log.txt
 export MAVEN_OPTS="-Xmx26G"
 
 usage ()
@@ -69,6 +69,10 @@ LANGUAGE=`echo $2 | sed "s/_.*//g"`
 
 echo "Language: $LANGUAGE"
 echo "Working directory: $WDIR"
+echo "Base work Directory: $BASE_WDIR"
+echo "Target Directory: $TARGET_DIR"
+echo "STOPWORDS: $STOPWORDS"
+echo "openNLP: $opennlp"
 
 mkdir -p $WDIR
 
@@ -79,7 +83,7 @@ mkdir -p $WDIR
 
 echo "Loading Wikipedia dump..."
 if [ -z "$WIKI_MIRROR" ]; then
-  WIKI_MIRROR="http://dumps.wikimedia.org/"
+  WIKI_MIRROR="https://dumps.wikimedia.org/"
 fi
 
 if [ "$eval" == "false" ]; then
@@ -166,7 +170,7 @@ if [ -d dbpedia-spotlight ]; then
     mvn -T 1C -q clean install
 else
     echo "Setting up DBpedia Spotlight..."
-    git clone --depth 1 https://github.com/dbpedia-spotlight/dbpedia-spotlight.git
+    git clone --depth 1 https://github.com/datasift/dbpedia-spotlight.git
     cd dbpedia-spotlight
     mvn -T 1C -q clean install
 fi
@@ -178,7 +182,7 @@ fi
 
 cd $BASE_WDIR
 rm -Rf wikistatsextractor
-git clone --depth 1 https://github.com/jodaiber/wikistatsextractor
+git clone --depth 1 https://github.com/jodaiber/wikistatsextractor.git
 
 # Stop processing if one step fails
 set -e

@@ -16,8 +16,8 @@
 
 package org.dbpedia.spotlight.spot.lingpipe
 
-import com.aliasi.tokenizer.{RegExTokenizerFactory, ModifyTokenTokenizerFactory}
-import java.util.regex.Pattern
+//import com.aliasi.tokenizer.{RegExTokenizerFactory, ModifyTokenTokenizerFactory}
+//import java.util.regex.Pattern
 
 /**
  * Created by IntelliJ IDEA.
@@ -28,6 +28,6 @@ import java.util.regex.Pattern
  */
 
 
-object AnnotationTokenizerFactory
-        extends ModifyTokenTokenizerFactory(
-            new RegExTokenizerFactory(TokenizerRegEx.BASE_REGEX, Pattern.CASE_INSENSITIVE))
+//object AnnotationTokenizerFactory
+//        extends ModifyTokenTokenizerFactory(
+//            new RegExTokenizerFactory(TokenizerRegEx.BASE_REGEX, Pattern.CASE_INSENSITIVE))

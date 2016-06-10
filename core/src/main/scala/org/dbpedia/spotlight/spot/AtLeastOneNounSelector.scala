@@ -18,12 +18,9 @@ package org.dbpedia.spotlight.spot
  *
  */
 
-import com.aliasi.sentences.IndoEuropeanSentenceModel
-import java.io.File
-import org.dbpedia.spotlight.tagging.lingpipe.{LingPipeTaggedTokenProvider, LingPipeFactory}
-import scala.collection.JavaConverters._
-
 import org.dbpedia.spotlight.model._
+
+import scala.collection.JavaConverters._
 
 
 /**
@@ -38,8 +35,8 @@ class AtLeastOneNounSelector extends TaggedSpotSelector {
         val occs = occurrences.asScala
         occs.filter(o => {
             val tokens = o.context.asInstanceOf[TaggedText].taggedTokenProvider.getTaggedTokens(o.textOffset, o.textOffset + o.surfaceForm.name.length)
-            val atLeastOneNoun = (None != tokens.asScala.find( t => t.getPOSTag.startsWith("n") || t.getPOSTag.startsWith("fw")  )) // at least one token is a noun.
-            atLeastOneNoun
+            val atLeastOneNoun = tokens.asScala.find( t => t.getPOSTag.startsWith("n") || t.getPOSTag.startsWith("fw")) // at least one token is a noun.
+            atLeastOneNoun.isDefined
         }).asJava
     }
 

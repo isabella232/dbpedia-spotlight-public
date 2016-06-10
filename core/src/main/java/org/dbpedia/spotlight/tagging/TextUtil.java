@@ -1,7 +1,5 @@
 package org.dbpedia.spotlight.tagging;
 
-import org.dbpedia.spotlight.tagging.lingpipe.AnnotatedString;
-
 import java.util.List;
 
 

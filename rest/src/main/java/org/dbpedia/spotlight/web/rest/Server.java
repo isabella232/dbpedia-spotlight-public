@@ -85,21 +85,9 @@ public class Server {
 
         URI serverURI = null;
 
-        if(args[0].endsWith(".properties")) {
-            //We are using the old-style configuration file:
-
-            initByPropertiesFile(args[0]);
-            serverURI = new URI(configuration.getServerURI());
-
-        } else {
-            //We are using a model folder:
-
-            serverURI = new URI(args[1]);
-            initByModel(args[0]);
-        }
-
-        //ExternalUriWadlGeneratorConfig.setUri(configuration.getServerURI()); //TODO get another parameter, maybe getExternalServerURI since Grizzly will use this in order to find out to which port to bind
-
+        //We are only using a model folder:
+        serverURI = new URI(args[1]);
+        initByModel(args[0]);
 
         LOG.info(String.format("Initiated %d disambiguators.",disambiguators.size()));
         LOG.info(String.format("Initiated %d spotters.",spotters.size()));
@@ -108,7 +96,6 @@ public class Server {
         initParams.put("com.sun.jersey.config.property.resourceConfigClass", "com.sun.jersey.api.core.PackagesResourceConfig");
         initParams.put("com.sun.jersey.config.property.packages", "org.dbpedia.spotlight.web.rest.resources");
         initParams.put("com.sun.jersey.config.property.WadlGeneratorConfig", "org.dbpedia.spotlight.web.rest.wadl.ExternalUriWadlGeneratorConfig");
-
 
         SelectorThread threadSelector = GrizzlyWebContainerFactory.create(serverURI, initParams);
         threadSelector.start();

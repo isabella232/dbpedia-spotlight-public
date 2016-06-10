@@ -23,7 +23,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <dbpedia.spotlight.version>0.7</dbpedia.spotlight.version>
+        <dbpedia.spotlight.version>0.8-SNAPSHOT</dbpedia.spotlight.version>
 
         <java.compiler.version>1.6</java.compiler.version>
         <scala.compiler.version>2.10.4</scala.compiler.version>
@@ -39,7 +39,7 @@
 
     <groupId>org.dbpedia.spotlight</groupId>
     <artifactId>spotlight</artifactId>
-    <version>0.7</version>
+    <version>0.8-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>DBpedia Spotlight annotation framework (parent POM)</name>
 
@@ -47,11 +47,30 @@
         <module>core</module>
         <module>rest</module>
         <module>index</module>
-        <module>eval</module>
-        <module>uima</module>
-        <module>dist</module>
-        <module>rest-tomcat</module>
+        <!--<module>eval</module>-->
+        <!--<module>uima</module>-->
+        <!--<module>dist</module>-->
+        <!--<module>rest-tomcat</module>-->
     </modules>
+
+    <scm>
+        <connection>scm:git:https://github.com/datasift/dbpedia-spotlight</connection>
+        <developerConnection>scm:git:git@github.com:datasift/dbpedia-spotlight</developerConnection>
+        <url>https://github.com/datasift/dbpedia-spotlight</url>
+    </scm>
+
+
+    <distributionManagement>
+        <repository>
+            <id>com.datasift.maven.release</id>
+            <url>sftp://repo.sysms.net:55522/var/www/repo.sysms.net/ds-build-maven/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>com.datasift.maven.snapshot</id>
+            <url>sftp://repo.sysms.net:55522/var/www/repo.sysms.net/ds-build-maven/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
+
 
     <build>
         <pluginManagement>
@@ -753,15 +772,15 @@
                 -->
             </dependency>
 
-            <dependency>
-                <groupId>com.aliasi</groupId>
-                <artifactId>lingpipe</artifactId>
-                <version>4.1.0</version>
-                <!--
-                   License: Alias-i Royalty Free License Version 1
-                   url: http://alias-i.com/lingpipe/licenses/lingpipe-license-1.txt
-                -->
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>com.aliasi</groupId>-->
+                <!--<artifactId>lingpipe</artifactId>-->
+                <!--<version>4.1.0</version>-->
+                <!--&lt;!&ndash;-->
+                   <!--License: Alias-i Royalty Free License Version 1-->
+                   <!--url: http://alias-i.com/lingpipe/licenses/lingpipe-license-1.txt-->
+                <!--&ndash;&gt;-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.semanticweb.yars</groupId>
@@ -817,12 +836,6 @@
             </dependency>
 
             <dependency>
-                <groupId>org.wiki.harvester.dependency</groupId>
-                <artifactId>pedia.uima.harvester</artifactId>
-                <version>1.0</version>
-            </dependency>
-
-            <dependency>
                 <groupId>pircbot</groupId>
                 <artifactId>pircbot</artifactId>
                 <version>1.5.0</version>
@@ -844,36 +857,6 @@
                 <groupId>org.knallgrau.utils</groupId>
                 <artifactId>textcat</artifactId>
                 <version>1.0.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-core</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-cpe</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-tools</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-document-annotation</artifactId>
-                <version>2.4.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.uima</groupId>
-                <artifactId>uimaj-bootstrap</artifactId>
-                <version>2.4.0</version>
             </dependency>
 
             <dependency>

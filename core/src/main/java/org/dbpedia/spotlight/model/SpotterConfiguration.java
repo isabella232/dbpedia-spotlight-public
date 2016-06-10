@@ -52,7 +52,6 @@ public class SpotterConfiguration {
     private String  spotterSurfaceForms = "";
 
     public enum SpotterPolicy {Default,
-        LingPipeSpotter,
         AtLeastOneNounSelector,
         CoOccurrenceBasedSelector,
         NESpotter,
@@ -76,15 +75,6 @@ public class SpotterConfiguration {
         // Validate spotters
         List<SpotterPolicy> spotters = getSpotterPolicies();
         LOG.info(String.format("Will load spotters: %s.",spotters));
-
-        // Validate LingPipeSpotter
-        if (spotters.contains(SpotterPolicy.LingPipeSpotter)) {
-            //Load spotter configuration:
-            spotterFile = config.getProperty("org.dbpedia.spotlight.spot.dictionary").trim();
-            if(!new File(spotterFile).isFile()) {
-                throw new ConfigurationException("Cannot find spotter file "+spotterFile);
-            }
-        }
 
         // Validate CoOccurrenceBasedSelector
         if (spotters.contains(SpotterPolicy.CoOccurrenceBasedSelector)) {
