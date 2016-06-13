@@ -1,4 +1,7 @@
 # DBpedia Spotlight
+
+__This repo is obsolete. Please start using https://github.com/datasift/dbpedia-spotlight. Leaving this around for any legacy purpose. Will be deleted soon.__
+
 #### Shedding Light on the Web of Documents
 
 DBpedia Spotlight looks for ~3.5M things of unknown or ~320 known types in text and tries to link them to their global unique identifiers in [DBpedia](http://dbpedia.org). 
